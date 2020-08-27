@@ -1,0 +1,62 @@
+﻿@model List<ImageUploadNetCore.Models.UploadImageViewModel>
+
+@{
+    ViewData["Title"] = "UploadImage";
+}
+
+<h1>UploadImage</h1>
+
+@if (Model.Count > 0)
+{
+
+
+
+    <table class="table table-hover">
+        <tr>
+            <th> Resim </th>
+            <th> Resim Adı </th>
+            <th> Resim Boyutu </th>
+        </tr>
+
+
+
+        @foreach (var image in Model)
+        {
+            <tr>
+                <td>
+                    <img src="/@image.FullName" style="width:100px;" />
+                </td>
+                <td>@image.FileName </td>
+                <td>@image.Size (KB)</td>
+            </tr>
+        }
+
+
+
+    </table>
+
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        Yüklenmiş resim bulunamadı!
+    </div>
+}
+
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="UploadImage" enctype="multipart/form-data">
+            <h2 class="text-center lead"> Resim Yükle</h2>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Resim Bilgileri</label>
+                <input type="file" name="file" class="form-control" />
+            </div>
+            <div class="form-group text-right">
+                <input type="submit" class="btn btn-success btn-sm w-25" value="Resim Yükle" />
+            </div>
+        </form>
+    </div>
+</div>
